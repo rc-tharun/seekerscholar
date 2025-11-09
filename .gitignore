@@ -8,7 +8,7 @@ data/raw/
 data/processed/*.csv
 data/releases/
 artifacts/
-*.dvc
+!.dvc
 *.lock
 
 # DVC internals & caches
