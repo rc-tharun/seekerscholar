@@ -1,0 +1,21 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  lint_and_smoke:                # job id must be a simple string
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: pre-commit run --all-files
+      - name: Smoke build CSV (no network)
+        shell: bash
+        run: |
+          set -e
+          mkdir -p data/raw
+          cat > data/raw/papers.jsonl 
+          <<'EOF'{"source":"openalex","openalex_id":"W1","title":"Test Paper","abstract":"Hello world","year":2024,"references":["W2"],"authors":["A Author"]} {"source":"openalex","openalex_id":"W2","title":"Ref Paper","abstract":"","year":2023,"references":[],"authors":["B Author"]}EOF
+          python pipelines/build_csv.py
+          test -s data/processed/papers.csv
