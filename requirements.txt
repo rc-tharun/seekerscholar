@@ -1,0 +1,11 @@
+requests
+tqdm
+pandas
+orjson
+python-dotenv
+pre-commit
+# later (optional)
+pyserini
+networkx
+sentence-transformers
+faiss-cpu

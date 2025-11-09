@@ -1,0 +1,16 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# data & artifacts
+data/raw/
+data/processed/*.csv
+data/releases/
+artifacts/
+*.dvc
+*.lock
+
+# DVC internals & caches
+.dvc/
+.cache/
